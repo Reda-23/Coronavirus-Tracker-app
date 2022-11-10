@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.io.StringReader;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -24,9 +25,8 @@ public class CoronaDataService {
                 .uri(URI.create(CORONA_DATA_URL))
                 .build();
         HttpResponse<String> httpResponse = client.send(request,HttpResponse.BodyHandlers.ofString());
-        System.out.println(httpResponse.body());
-
-        Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
+        StringReader csvReader = new StringReader(httpResponse.body());
+        Iterable<CSVRecord> records = CSVFormat.DEFAULT.parse(csvReader);
         for (CSVRecord record : records) {
             String id = record.get("ID");
             String customerNo = record.get("CustomerNo");
