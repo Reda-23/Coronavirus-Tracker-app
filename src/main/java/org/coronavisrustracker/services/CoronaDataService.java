@@ -21,6 +21,10 @@ public class CoronaDataService {
 
     private static String  CORONA_DATA_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
 
+    public List<LocationStates> getLocationStates() {
+        return locationStates;
+    }
+
     private List<LocationStates> locationStates = new ArrayList<>();
     @PostConstruct
     @Scheduled (cron = "* * * 1 * *")
@@ -38,7 +42,7 @@ public class CoronaDataService {
             locationStates1.setState(record.get("Province/State"));
             locationStates1.setCountry(record.get("Country/Region"));
             locationStates1.setLatestTotalCases(record.get(record.size() - 1));
-            System.out.println(locationStates1);
+           // System.out.println(locationStates1);
             newStates.add(locationStates1);
             this.locationStates = newStates;
 

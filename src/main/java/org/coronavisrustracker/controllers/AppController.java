@@ -1,13 +1,21 @@
 package org.coronavisrustracker.controllers;
 
-eimport org.springframework.stereotype.Controller;
+import org.coronavisrustracker.services.CoronaDataService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class AppController {
+    private CoronaDataService coronaDataService;
 
-    @GetMapping
-    public String Cases() {
+    public AppController(CoronaDataService coronaDataService) {
+        this.coronaDataService = coronaDataService;
+    }
+
+    @GetMapping("/")
+    public String home(Model model) {
+        model.addAttribute("states",coronaDataService.getLocationStates());
         return "home";
     }
 }

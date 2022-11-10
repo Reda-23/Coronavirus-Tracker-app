@@ -1,11 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Corona</title>
+    <title>Corona Virus Tracker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
+
 <body>
-    <h1>Corona Virus Cases</h1>
+
+<p> </p>
+<table>
+    <tr>
+        <th>State</th>
+        <th>Country</th>
+        <th>Total Cases Reported</th>
+    </tr>
+    <tr th:each="locationStat : ${states}" >
+        <td th:text="${locationStat.state}" ></td>
+        <td th:text="${locationStat.country}" ></td>
+        <td th:text="${locationStat.latestTotalCases}" ></td>
+    </tr>
+</table>
 
 </body>
+
 </html>
