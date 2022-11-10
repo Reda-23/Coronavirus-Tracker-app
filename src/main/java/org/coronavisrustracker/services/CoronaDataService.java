@@ -22,6 +22,7 @@ public class CoronaDataService {
                 .uri(URI.create(CORONA_DATA_URL))
                 .build();
         HttpResponse<String> httpResponse = client.send(request,HttpResponse.BodyHandlers.ofString());
+        System.out.println(httpResponse.body());
     }
 
 }
