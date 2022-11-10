@@ -6,6 +6,16 @@ public class LocationStates {
     private String country;
     private String latestTotalCases;
 
+    public int getDiffFromPrevDay() {
+        return diffFromPrevDay;
+    }
+
+    public void setDiffFromPrevDay(int diffFromPrevDay) {
+        this.diffFromPrevDay = diffFromPrevDay;
+    }
+
+    private int diffFromPrevDay;
+
     @Override
     public String toString() {
         return "LocationStates{" +
